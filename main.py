@@ -11,6 +11,7 @@ import torch.nn as nn
 BATCH_SIZE = 32             # size of minibatch
 LR = 1e-6
 INITIAL_EPSILON = 9.995005336687413e-05      # starting value of epsilon
+# INITIAL_EPSILON = 0.1      # starting value of epsilon
 FINAL_EPSILON = 0.0001      # final value of epsilon
 # FINAL_EPSILON = 9.995005336687413e-05
 
@@ -89,13 +90,13 @@ class DQN(object):
 
     def save(self):
         print("save model param")
-        torch.save(self.Q_eval_net.state_dict(), 'params3_test.pth')
+        torch.save(self.Q_eval_net.state_dict(), 'params.pth')
 
     def load(self):
-        if os.path.exists("params3_test.pth"):
+        if os.path.exists("params.pth"):
             print("load model param")
-            self.Q_eval_net.load_state_dict(torch.load('params3_test.pth'))
-            self.Q_target_net.load_state_dict(torch.load('params3_test.pth'))
+            self.Q_eval_net.load_state_dict(torch.load('params.pth'))
+            self.Q_target_net.load_state_dict(torch.load('params.pth'))
 
     def choose_action(self):
         action = np.zeros(self.actions_num)
@@ -106,7 +107,7 @@ class DQN(object):
         if QValue.device.type == 'cuda':
             QValue = QValue.cpu().detach().numpy()
         else:
-            QValue = QValue.numpy()
+            QValue = QValue.detach().numpy()
 
         if self.timeStep % FRAME_PER_ACTION == 0:
             if random.random() <= self.epsilon:     
