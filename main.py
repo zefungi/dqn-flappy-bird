@@ -9,11 +9,9 @@ from torch.autograd import Variable
 import torch.nn as nn
 
 BATCH_SIZE = 32             # size of minibatch
-LR = 1e-6
-INITIAL_EPSILON = 9.995005336687413e-05      # starting value of epsilon
-# INITIAL_EPSILON = 0.1      # starting value of epsilon
+LR = 1e-6                   # learning rate
+INITIAL_EPSILON = 0.1       # starting value of epsilon
 FINAL_EPSILON = 0.0001      # final value of epsilon
-# FINAL_EPSILON = 9.995005336687413e-05
 
 GAMMA = 0.99                # decay rate of past observations
 TARGET_REPLACE_ITER = 100   # target net update frequency
