@@ -20,7 +20,7 @@ MEMORY_CAPACITY = 50000     # number of previous transitions to remember
 GAME = 'bird'               # the name of the game being played for log files
 ACTIONS = 2                 # number of valid actions
 
-OBSERVE = 1000.               # timesteps to observe before training, must be greater than BATCH_SIZE
+OBSERVE = 1000.             # timesteps to observe before training, must be greater than BATCH_SIZE
 EXPLORE = 2000000.          # frames over which to anneal epsilon
 
 FRAME_PER_ACTION = 1        # how many frames to update the actions
