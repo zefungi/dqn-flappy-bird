@@ -21,7 +21,7 @@ GAME = 'bird'               # the name of the game being played for log files
 ACTIONS = 2                 # number of valid actions
 
 OBSERVE = 1000.             # timesteps to observe before training, must be greater than BATCH_SIZE
-EXPLORE = 10000.            # frames over which to anneal epsilon
+EXPLORE = 200000.            # frames over which to anneal epsilon
 EPOCH = 1000000             # number of game frames to train for
 FRAME_PER_ACTION = 1        # how many frames to update the actions
 
@@ -231,4 +231,4 @@ if __name__ == '__main__':
                                                                             # 更新當前狀態、時間步數
         TOTAL_REWARD += reward
     
-    print("game over! total reward is " + str(TOTAL_REWARD))
+    printz
