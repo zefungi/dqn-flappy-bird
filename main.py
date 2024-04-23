@@ -21,9 +21,11 @@ GAME = 'bird'               # the name of the game being played for log files
 ACTIONS = 2                 # number of valid actions
 
 OBSERVE = 1000.             # timesteps to observe before training, must be greater than BATCH_SIZE
-EXPLORE = 2000000.          # frames over which to anneal epsilon
-
+EXPLORE = 10000.            # frames over which to anneal epsilon
+EPOCH = 1000000             # number of game frames to train for
 FRAME_PER_ACTION = 1        # how many frames to update the actions
+
+TOTAL_REWARD = 0            # initial total reward
 
 resize_w = 80
 resize_h = 80
@@ -218,7 +220,7 @@ if __name__ == '__main__':
     dqn = DQN(actions_num = 2, observation = observation_init) 
 
     # Step 3.2: run the game
-    while 1:
+    for i in range(EPOCH):
         action = dqn.choose_action()                                        # 根據當前狀態選擇行為
 
         nextObservation, reward, terminal = flappyBird.frame_step(action)   # 根據選擇的行為得到新的反饋
@@ -227,3 +229,6 @@ if __name__ == '__main__':
         dqn.update(nextObservation, action, reward, terminal)               # 儲存當前狀態、行為、反饋、新狀態、是否結束
                                                                             # 訓練網路
                                                                             # 更新當前狀態、時間步數
+        TOTAL_REWARD += reward
+    
+    print("game over! total reward is " + str(TOTAL_REWARD))
