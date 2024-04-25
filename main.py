@@ -231,4 +231,3 @@ if __name__ == '__main__':
                                                                             # 更新當前狀態、時間步數
         TOTAL_REWARD += reward
     
-    printz
