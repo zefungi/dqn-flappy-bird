@@ -30,6 +30,9 @@ TOTAL_REWARD = 0            # initial total reward
 resize_w = 80
 resize_h = 80
 
+random_seed_value= 42
+random.seed(random_seed_value)
+
 # 如果有 CUDA 可用，將 tensor 移動到 CUDA 上，否則保持在 CPU 上
 device = torch.device("cuda" if torch.cuda.is_available() else "cpu")
 
@@ -230,4 +233,3 @@ if __name__ == '__main__':
                                                                             # 訓練網路
                                                                             # 更新當前狀態、時間步數
         TOTAL_REWARD += reward
-    
